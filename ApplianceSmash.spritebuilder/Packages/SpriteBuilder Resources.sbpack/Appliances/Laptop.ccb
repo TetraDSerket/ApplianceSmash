@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>3</integer>
+	<integer>6</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -41,7 +41,7 @@
 		<array>
 			<dict>
 				<key>UUID</key>
-				<integer>2</integer>
+				<integer>5</integer>
 				<key>animatedProperties</key>
 				<dict>
 					<key>3</key>
@@ -118,7 +118,7 @@
 				<array>
 					<dict>
 						<key>UUID</key>
-						<integer>1</integer>
+						<integer>4</integer>
 						<key>animatedProperties</key>
 						<dict>
 							<key>1</key>
@@ -184,7 +184,7 @@
 												<key>opt</key>
 												<real>2</real>
 												<key>type</key>
-												<integer>3</integer>
+												<integer>2</integer>
 											</dict>
 											<key>name</key>
 											<string>position</string>
@@ -195,7 +195,7 @@
 											<key>value</key>
 											<array>
 												<real>300</real>
-												<real>0.0</real>
+												<real>100</real>
 											</array>
 										</dict>
 										<dict>
@@ -285,8 +285,8 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1.2999999523162842</real>
-									<real>1.2999999523162842</real>
+									<real>0.69999998807907104</real>
+									<real>0.69999998807907104</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -299,7 +299,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>images/Television2.png</string>
+									<string>images/Laptop.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -335,8 +335,6 @@
 								<array/>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 						<key>seqExpanded</key>
 						<true/>
 					</dict>
@@ -409,8 +407,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.94999998807907104</real>
+							<real>0.94999998807907104</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -432,7 +430,7 @@
 				<key>type</key>
 				<integer>0</integer>
 				<key>value</key>
-				<string>5</string>
+				<string>3</string>
 			</dict>
 		</array>
 		<key>displayName</key>
@@ -441,71 +439,6 @@
 		<string></string>
 		<key>memberVarAssignmentType</key>
 		<integer>1</integer>
-		<key>physicsBody</key>
-		<dict>
-			<key>affectedByGravity</key>
-			<true/>
-			<key>allowsRotation</key>
-			<true/>
-			<key>bodyShape</key>
-			<integer>0</integer>
-			<key>collisionCategories</key>
-			<array/>
-			<key>collisionMask</key>
-			<array/>
-			<key>collisionType</key>
-			<string></string>
-			<key>cornerRadius</key>
-			<real>0.0</real>
-			<key>density</key>
-			<real>1</real>
-			<key>dynamic</key>
-			<false/>
-			<key>elasticity</key>
-			<real>0.30000001192092896</real>
-			<key>friction</key>
-			<real>0.30000001192092896</real>
-			<key>points</key>
-			<array>
-				<array>
-					<real>-67.75390625</real>
-					<real>-70.17578125</real>
-				</array>
-				<array>
-					<real>-68.015625</real>
-					<real>21.01953125</real>
-				</array>
-				<array>
-					<real>69.328125</real>
-					<real>21.1953125</real>
-				</array>
-				<array>
-					<real>69.9375</real>
-					<real>-68.56640625</real>
-				</array>
-			</array>
-			<key>polygons</key>
-			<array>
-				<array>
-					<array>
-						<real>69.9375</real>
-						<real>-68.56640625</real>
-					</array>
-					<array>
-						<real>69.328125</real>
-						<real>21.1953125</real>
-					</array>
-					<array>
-						<real>-68.015625</real>
-						<real>21.01953125</real>
-					</array>
-					<array>
-						<real>-67.75390625</real>
-						<real>-70.17578125</real>
-					</array>
-				</array>
-			</array>
-		</dict>
 		<key>properties</key>
 		<array>
 			<dict>
@@ -568,6 +501,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
@@ -659,7 +594,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>0.3333333432674408</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -731,7 +666,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.66666668653488159</real>
+			<real>0.033333335071802139</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

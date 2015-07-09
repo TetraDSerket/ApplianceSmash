@@ -18,13 +18,31 @@ class Gameplay: CCNode
     weak var gamePhysicsNode: CCPhysicsNode!
     weak var scoreLabel: CCLabelTTF!
     weak var hitsRemainingLabel: CCLabelTTF!
+    let numberOfAppliances: Int = 3
     var currentAppliance: Appliance!
     var gameState: GameState!
+    weak var lifeBar: CCSprite!
+    weak var lifeBarNode: CCNode!
+    var timeLeft: Float = 5
+    {
+        didSet
+        {
+            timeLeft = max(min(timeLeft, 5), 0)
+            lifeBar.scaleX = timeLeft / Float(5)
+        }
+    }
     var hitsRemaining: Int = 0
     {
         didSet
         {
-            hitsRemainingLabel.string = "\(hitsRemaining)"
+            if(hitsRemaining > -1)
+            {
+                hitsRemainingLabel.string = "\(hitsRemaining)"
+            }
+            else
+            {
+                hitsRemainingLabel.string = "0"
+            }
         }
     }
     var score: Int = 0
@@ -49,28 +67,36 @@ class Gameplay: CCNode
         gameState = .Playing
     }
     
-    override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!)
+    override func update(delta: CCTime)
     {
-//        println("IM TOUCHED")
+        if gameState != .Playing { return }
+        timeLeft -= Float(delta)
+        if timeLeft == 0
+        {
+            gameOver()
+        }
     }
+    
+    override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!)
+    { }
     
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!)
     {
         if(gameState == .Playing)
         {
-            println("DONT LEAVE ME YOU SELFLESS PIE")
             if(hitsRemaining < 1)
             {
                 gameOver()
             }
+            currentAppliance.animationManager.runAnimationsForSequenceNamed("tap")
             score++
             hitsRemaining--
+            timeLeft = timeLeft + 0.5
         }
     }
     
     func gameOver()
     {
-        println("gameOver")
         gameState = .GameOver
         let popup = CCBReader.load("GameOver", owner: self) as! GameOver
         popup.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .BottomLeft)
@@ -91,7 +117,24 @@ class Gameplay: CCNode
         {
             removeAppliance(currentAppliance)
         }
-        currentAppliance = CCBReader.load("Appliances/Television") as! Appliance
+        
+        let randomPrecision = UInt32(numberOfAppliances)
+        let random = Int(arc4random_uniform(randomPrecision))
+        
+        var applianceName: String!
+        switch(random)
+        {
+        case 0:
+            applianceName = "Television"
+        case 1:
+            applianceName = "Laptop"
+        case 2:
+            applianceName = "Phone"
+        default:
+            applianceName = "Television"
+        }
+        
+        currentAppliance = CCBReader.load("Appliances/\(applianceName)") as! Appliance
         currentAppliance.animationManager.runAnimationsForSequenceNamed("summonAppliance")
         currentAppliance.position = CGPoint(x: 160, y: 219)
         gamePhysicsNode.addChild(currentAppliance)
@@ -124,7 +167,6 @@ class Gameplay: CCNode
     
     func swipeLeft()
     {
-        println("swipe Left")
         if(hitsRemaining < 1)
         {
             summonAppliance()
@@ -134,16 +176,7 @@ class Gameplay: CCNode
             gameOver()
         }
     }
-    
-    func swipeRight() {
-        println("Right swipe!")
-    }
-    
-    func swipeUp() {
-        println("Up swipe!")
-    }
-    
-    func swipeDown() {
-        println("Down swipe!")
-    }
+    func swipeRight() { }
+    func swipeUp() { }
+    func swipeDown() { }
 }

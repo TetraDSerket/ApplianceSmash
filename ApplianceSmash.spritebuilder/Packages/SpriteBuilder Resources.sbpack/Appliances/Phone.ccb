@@ -285,8 +285,8 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1.2999999523162842</real>
-									<real>1.2999999523162842</real>
+									<real>0.15000000596046448</real>
+									<real>0.15000000596046448</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -299,7 +299,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>images/Television2.png</string>
+									<string>images/iPhone.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -335,8 +335,6 @@
 								<array/>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 						<key>seqExpanded</key>
 						<true/>
 					</dict>
@@ -432,7 +430,7 @@
 				<key>type</key>
 				<integer>0</integer>
 				<key>value</key>
-				<string>5</string>
+				<string>2</string>
 			</dict>
 		</array>
 		<key>displayName</key>
@@ -568,6 +566,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
@@ -731,7 +731,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.66666668653488159</real>
+			<real>0.0</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
