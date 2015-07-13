@@ -1,18 +1,18 @@
 //
-//  Gameplay.swift
+//  Tutorial.swift
 //  ApplianceSmash
 //
-//  Created by Varsha Ramakrishnan on 7/8/15.
+//  Created by Varsha Ramakrishnan on 7/10/15.
 //  Copyright (c) 2015 Apportable. All rights reserved.
 //
 
 import UIKit
 
-class Gameplay: CCNode
+class Tutorial: CCNode
 {
     enum GameState
     {
-        case Playing, GameOver
+        case Tutorial, Practice, GameOver
     }
     
     weak var gamePhysicsNode: CCPhysicsNode!
@@ -21,18 +21,19 @@ class Gameplay: CCNode
     weak var swipeLabel: CCLabelTTF!
     weak var tapLabel: CCLabelTTF!
     weak var timeLabel: CCLabelTTF!
+    weak var barrelLabel: CCLabelTTF!
     var currentAppliance: Appliance!
     var previousAppliance: Appliance!
     var gameState: GameState!
     var turnsInTutorial: Int = 0
     weak var lifeBar: CCSprite!
     weak var lifeBarNode: CCNode!
-    var timeLeft: Float = 5
+    var timeLeft: Float = 8
     {
         didSet
         {
-            timeLeft = max(min(timeLeft, 5), 0)
-            lifeBar.scaleX = timeLeft / Float(5)
+            timeLeft = max(min(timeLeft, 8), 0)
+            lifeBar.scaleX = timeLeft / Float(8)
         }
     }
     var hitsRemaining: Int = 0
@@ -49,13 +50,13 @@ class Gameplay: CCNode
             }
         }
     }
-    var score: Int = 0
-    {
-        didSet
-        {
-            scoreLabel.string = "\(score)"
-        }
-    }
+//    var score: Int = 0
+//    {
+//        didSet
+//        {
+//            scoreLabel.string = "\(score)"
+//        }
+//    }
     
     func didLoadFromCCB()
     {
@@ -67,13 +68,13 @@ class Gameplay: CCNode
     {
         super.onEnterTransitionDidFinish()
         self.userInteractionEnabled = true
-        gameState = .Playing
+        gameState = .Tutorial
         summonAppliance()
     }
     
     override func update(delta: CCTime)
     {
-        if (gameState == .Playing)
+        if (turnsInTutorial>5)
         {
             timeLeft -= Float(delta)
             if timeLeft == 0
@@ -81,39 +82,69 @@ class Gameplay: CCNode
                 gameOver()
             }
         }
+        if(gameState == .Tutorial)
+        {
+            switch(turnsInTutorial)
+            {
+            case 0:
+                tapLabel.visible = true
+            case 5:
+                tapLabel.visible = false
+            case 6:
+                timeLabel.visible = true
+            default:
+                return
+            }
+        }
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!)
-    { }
-    
-    override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!)
     {
-        if(gameState == .Playing)
+        if(gameState == .Tutorial)
         {
-            if(turnsInTutorial < 10)
+            println(turnsInTutorial)
+            if(hitsRemaining > 0)
             {
                 turnsInTutorial++
             }
-            else
-            {
-                timeLabel.visible = false
-            }
-            
+        }
+    }
+    
+    override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!)
+    {
+        if(gameState == .Practice)
+        {
             if(hitsRemaining < 1)
             {
                 gameOver()
             }
             currentAppliance.animationManager.runAnimationsForSequenceNamed("tap")
             currentAppliance.makeFire(hitsRemaining)
-            score++
+//            score++
             hitsRemaining--
             timeLeft = timeLeft + 0.25
+        }
+        if(gameState == .Tutorial)
+        {
+            currentAppliance.animationManager.runAnimationsForSequenceNamed("tap")
+            currentAppliance.makeFire(hitsRemaining)
+            if(hitsRemaining > 0)
+            {
+//                score++
+                hitsRemaining--
+                timeLeft = timeLeft + 0.25
+            }
+            if(hitsRemaining == 0)
+            {
+                timeLabel.visible = false
+                swipeLabel.visible = true
+            }
         }
     }
     
     func gameOver()
     {
-        if(gameState == .Playing)
+        if(gameState == .Practice)
         {
             gameState = .GameOver
             let popup = CCBReader.load("GameOver", owner: self) as! GameOver
@@ -162,9 +193,13 @@ class Gameplay: CCNode
         case 2:
             applianceName = "Phone"
         case 3:
-            applianceName = "OilBarrel"
+            applianceName = "Laptop"
         default:
             applianceName = "Laptop"
+        }
+        if(turnsInTutorial<15)
+        {
+            applianceName = "Television"
         }
         
         currentAppliance = CCBReader.load("Appliances/\(applianceName)") as! Appliance
@@ -178,12 +213,6 @@ class Gameplay: CCNode
     func removeAppliance(appliance: Appliance)
     {
         previousAppliance = appliance
-    }
-    
-    func swipe()
-    {
-        summonAppliance()
-        timeLeft += 0.35
     }
     
     func setupGestures()
@@ -205,12 +234,23 @@ class Gameplay: CCNode
         CCDirector.sharedDirector().view.addGestureRecognizer(swipeDown)
     }
     
+    func dealWithSuccessfulSwipe()
+    {
+        if(gameState == .Tutorial)
+        {
+            swipeLabel.visible = false
+            turnsInTutorial++
+        }
+        summonAppliance()
+        timeLeft += 0.25
+    }
+    
     func swipeLeft()
     {
         if(hitsRemaining < 1)
         {
             currentAppliance.animationManager.runAnimationsForSequenceNamed("removeAppliance")
-            swipe()
+            dealWithSuccessfulSwipe()
         }
         else
         {
@@ -222,7 +262,7 @@ class Gameplay: CCNode
         if(hitsRemaining < 1)
         {
             currentAppliance.animationManager.runAnimationsForSequenceNamed("removeApplianceRight")
-            swipe()
+            dealWithSuccessfulSwipe()
         }
         else
         {
@@ -230,6 +270,13 @@ class Gameplay: CCNode
         }
     }
     
-    func swipeUp() { swipeRight() }
-    func swipeDown() { swipeRight() }
+    func returnToMainMenu()
+    {
+        let mainMenuScene = CCBReader.loadAsScene("MainScene")
+        let transition = CCTransition(fadeWithDuration: 0.8)
+        CCDirector.sharedDirector().presentScene(mainMenuScene, withTransition: transition)
+    }
+    
+    func swipeUp() { swipeLeft() }
+    func swipeDown() { swipeLeft() }
 }

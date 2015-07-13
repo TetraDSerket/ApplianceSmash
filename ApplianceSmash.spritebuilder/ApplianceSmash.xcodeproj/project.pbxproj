@@ -10,6 +10,7 @@
 		2808AEF21B4D856F00D3A6F3 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2808AEF11B4D856F00D3A6F3 /* Gameplay.swift */; };
 		2808AEFE1B4D89DC00D3A6F3 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2808AEFD1B4D89DC00D3A6F3 /* Appliance.swift */; };
 		2808AF141B4DC15700D3A6F3 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2808AF131B4DC15700D3A6F3 /* GameOver.swift */; };
+		2845EED91B50844F00E3D3FF /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2845EED81B50844E00E3D3FF /* Tutorial.swift */; };
 		5B121030197484FA004C1E1D /* ApplianceSmashActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* ApplianceSmashActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A046D7519E84C36004C4763 /* MainScene.swift */; };
@@ -154,6 +155,7 @@
 		2808AEF11B4D856F00D3A6F3 /* Gameplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gameplay.swift; path = Source/Gameplay.swift; sourceTree = "<group>"; };
 		2808AEFD1B4D89DC00D3A6F3 /* Appliance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appliance.swift; path = Source/Appliance.swift; sourceTree = "<group>"; };
 		2808AF131B4DC15700D3A6F3 /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameOver.swift; path = Source/GameOver.swift; sourceTree = "<group>"; };
+		2845EED81B50844E00E3D3FF /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tutorial.swift; path = Source/Tutorial.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 			children = (
 				2808AEF11B4D856F00D3A6F3 /* Gameplay.swift */,
 				2808AF131B4DC15700D3A6F3 /* GameOver.swift */,
+				2845EED81B50844E00E3D3FF /* Tutorial.swift */,
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
 				D352B48019EC608A00829775 /* MetalShaders */,
@@ -618,6 +621,7 @@
 						CreatedOnToolsVersion = 6.0.1;
 					};
 					B77F1B2D17B978D7009739AE = {
+						DevelopmentTeam = FZ7ESCL8YU;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
@@ -826,6 +830,7 @@
 				2808AEF21B4D856F00D3A6F3 /* Gameplay.swift in Sources */,
 				2808AF141B4DC15700D3A6F3 /* GameOver.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
+				2845EED91B50844F00E3D3FF /* Tutorial.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
