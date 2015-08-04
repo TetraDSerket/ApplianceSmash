@@ -22,10 +22,12 @@ class Tutorial: CCNode
     weak var tapLabel: CCLabelTTF!
     weak var timeLabel: CCLabelTTF!
     weak var barrelLabel: CCLabelTTF!
+    weak var tooMuchLabel: CCLabelTTF!
     var currentAppliance: Appliance!
     var previousAppliance: Appliance!
     var gameState: GameState!
     var turnsInTutorial: Int = 0
+    var popup: GameOver!
     weak var lifeBar: CCSprite!
     weak var lifeBarNode: CCNode!
     var timeLeft: Float = 8
@@ -36,6 +38,7 @@ class Tutorial: CCNode
             lifeBar.scaleX = timeLeft / Float(8)
         }
     }
+    
     var hitsRemaining: Int = 0
     {
         didSet
@@ -50,14 +53,7 @@ class Tutorial: CCNode
             }
         }
     }
-//    var score: Int = 0
-//    {
-//        didSet
-//        {
-//            scoreLabel.string = "\(score)"
-//        }
-//    }
-    
+
     func didLoadFromCCB()
     {
         setupGestures()
@@ -84,6 +80,11 @@ class Tutorial: CCNode
         }
         if(gameState == .Tutorial)
         {
+            if(hitsRemaining == 0)
+            {
+                timeLabel.visible = false
+                swipeLabel.visible = true
+            }
             switch(turnsInTutorial)
             {
             case 0:
@@ -92,6 +93,8 @@ class Tutorial: CCNode
                 tapLabel.visible = false
             case 6:
                 timeLabel.visible = true
+            case 11:
+                tooMuchLabel.visible = true
             default:
                 return
             }
@@ -134,31 +137,28 @@ class Tutorial: CCNode
                 hitsRemaining--
                 timeLeft = timeLeft + 0.25
             }
-            if(hitsRemaining == 0)
-            {
-                timeLabel.visible = false
-                swipeLabel.visible = true
-            }
         }
     }
     
     func gameOver()
     {
-        if(gameState == .Practice)
+        if(gameState == .Tutorial)
         {
             gameState = .GameOver
-            let popup = CCBReader.load("GameOver", owner: self) as! GameOver
+            let popup = CCBReader.load("GameOverT", owner: self) as! GameOver
             popup.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .BottomLeft)
             popup.position = CGPoint(x: 0.5, y: 0.5)
+            self.popup = popup
             parent.addChild(popup)
         }
     }
     
     func tryAgainButton()
     {
-        let gameplayScene = CCBReader.loadAsScene("Gameplay")
-        let transition = CCTransition(fadeWithDuration: 0.8)
-        CCDirector.sharedDirector().presentScene(gameplayScene, withTransition: transition)
+        //gameState = .Tutorial
+//        let gameplayScene = CCBReader.loadAsScene("Tutorial")
+//        let transition = CCTransition(fadeWithDuration: 0.8)
+//        CCDirector.sharedDirector().presentScene(gameplayScene, withTransition: transition)
     }
     
     func returnMainMenu()
@@ -197,7 +197,7 @@ class Tutorial: CCNode
         default:
             applianceName = "Laptop"
         }
-        if(turnsInTutorial<15)
+        if(turnsInTutorial<10)
         {
             applianceName = "Television"
         }
@@ -261,7 +261,7 @@ class Tutorial: CCNode
     {
         if(hitsRemaining < 1)
         {
-            currentAppliance.animationManager.runAnimationsForSequenceNamed("removeApplianceRight")
+        currentAppliance.animationManager.runAnimationsForSequenceNamed("removeApplianceRight")
             dealWithSuccessfulSwipe()
         }
         else

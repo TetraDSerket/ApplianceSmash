@@ -15,9 +15,19 @@ class Gameplay: CCNode
         case Playing, GameOver
     }
     
+    var highScore: Int = NSUserDefaults.standardUserDefaults().integerForKey("myHighScore") ?? 0
+    {
+        didSet
+        {
+            NSUserDefaults.standardUserDefaults().setInteger(highScore, forKey:"myHighScore")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
     weak var gamePhysicsNode: CCPhysicsNode!
     weak var scoreLabel: CCLabelTTF!
     weak var hitsRemainingLabel: CCLabelTTF!
+    weak var gradientNode: CCNodeGradient!
     weak var swipeLabel: CCLabelTTF!
     weak var tapLabel: CCLabelTTF!
     weak var timeLabel: CCLabelTTF!
@@ -27,12 +37,17 @@ class Gameplay: CCNode
     var turnsInTutorial: Int = 0
     weak var lifeBar: CCSprite!
     weak var lifeBarNode: CCNode!
-    var timeLeft: Float = 5
+    weak var GOscoreLabel: CCLabelTTF!
+    weak var GOhighScoreLabel: CCLabelTTF!
+    var timeLeft: Float = 4
     {
         didSet
         {
-            timeLeft = max(min(timeLeft, 5), 0)
-            lifeBar.scaleX = timeLeft / Float(5)
+            timeLeft = max(min(timeLeft, 4), 0)
+            lifeBar.scaleX = timeLeft / Float(4)
+            let greenVariable = min((timeLeft*2/4), 0.8)
+            let redVariable = min(2 - (timeLeft*2/4), 0.8)
+            gradientNode.endColor = CCColor(red: redVariable, green: greenVariable, blue: 0)
         }
     }
     var hitsRemaining: Int = 0
@@ -75,11 +90,12 @@ class Gameplay: CCNode
     {
         if (gameState == .Playing)
         {
-            timeLeft -= Float(delta)
-            if timeLeft == 0
-            {
-                gameOver()
-            }
+            //notice
+//            timeLeft -= Float(delta)
+//            if timeLeft == 0
+//            {
+//                gameOver()
+//            }
         }
     }
     
@@ -116,9 +132,15 @@ class Gameplay: CCNode
         if(gameState == .Playing)
         {
             gameState = .GameOver
+            if(score > highScore)
+            {
+                highScore = score
+            }
             let popup = CCBReader.load("GameOver", owner: self) as! GameOver
             popup.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .BottomLeft)
             popup.position = CGPoint(x: 0.5, y: 0.5)
+            GOscoreLabel.string = "Score: \(score)"
+            GOhighScoreLabel.string = "High Score: \(highScore)"
             parent.addChild(popup)
         }
     }
