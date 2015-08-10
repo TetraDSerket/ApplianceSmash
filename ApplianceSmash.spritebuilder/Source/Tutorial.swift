@@ -122,7 +122,7 @@ class Tutorial: CCNode
                 gameOver()
             }
             currentAppliance.animationManager.runAnimationsForSequenceNamed("tap")
-            currentAppliance.makeFire(hitsRemaining)
+            currentAppliance.makeShatter(hitsRemaining)
 //            score++
             hitsRemaining--
             timeLeft = timeLeft + 0.25
@@ -130,7 +130,7 @@ class Tutorial: CCNode
         if(gameState == .Tutorial)
         {
             currentAppliance.animationManager.runAnimationsForSequenceNamed("tap")
-            currentAppliance.makeFire(hitsRemaining)
+            currentAppliance.makeShatter(hitsRemaining)
             if(hitsRemaining > 0)
             {
 //                score++

@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Mixpanel
 
 class Gameplay: CCNode
 {
     enum GameState
     {
-        case Playing, GameOver
+        case Playing, GameOver, Paused
     }
     
     var highScore: Int = NSUserDefaults.standardUserDefaults().integerForKey("myHighScore") ?? 0
@@ -21,6 +22,40 @@ class Gameplay: CCNode
         {
             NSUserDefaults.standardUserDefaults().setInteger(highScore, forKey:"myHighScore")
             NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    var timeLeft: Float = 4
+    {
+        didSet
+        {
+            timeLeft = max(min(timeLeft, 4), 0)
+            lifeBar.scaleX = timeLeft / Float(4)
+            let greenVariable = min((timeLeft*2/4), 0.8)
+            let redVariable = min(2 - (timeLeft*2/4), 0.8)
+            lifeBar.color = CCColor(red: redVariable, green: greenVariable, blue: 0)
+        }
+    }
+    var hitsRemaining: Int = 0
+    {
+        didSet
+        {
+            if(hitsRemaining > 0)
+            {
+                hitsRemainingLabel.color = CCColor(red: 1, green: 1, blue: 1)
+                hitsRemainingLabel.string = "\(hitsRemaining)"
+            }
+            else
+            {
+                hitsRemainingLabel.color = CCColor(red: 0.8, green: 0.2, blue: 0.2)
+                hitsRemainingLabel.string = "0"
+            }
+        }
+    }
+    var score: Int = 0
+    {
+        didSet
+        {
+            scoreLabel.string = "\(score)"
         }
     }
     
@@ -34,46 +69,22 @@ class Gameplay: CCNode
     var currentAppliance: Appliance!
     var previousAppliance: Appliance!
     var gameState: GameState!
-    var turnsInTutorial: Int = 0
+    var applianceNumberFromBeginning = 1 //for tutorial purposes
+    let endOfTutorial = 3 //for tutorial purposes
     weak var lifeBar: CCSprite!
     weak var lifeBarNode: CCNode!
     weak var GOscoreLabel: CCLabelTTF!
     weak var GOhighScoreLabel: CCLabelTTF!
-    var timeLeft: Float = 4
-    {
-        didSet
-        {
-            timeLeft = max(min(timeLeft, 4), 0)
-            lifeBar.scaleX = timeLeft / Float(4)
-            let greenVariable = min((timeLeft*2/4), 0.8)
-            let redVariable = min(2 - (timeLeft*2/4), 0.8)
-            gradientNode.endColor = CCColor(red: redVariable, green: greenVariable, blue: 0)
-        }
-    }
-    var hitsRemaining: Int = 0
-    {
-        didSet
-        {
-            if(hitsRemaining > -1)
-            {
-                hitsRemainingLabel.string = "\(hitsRemaining)"
-            }
-            else
-            {
-                hitsRemainingLabel.string = "0"
-            }
-        }
-    }
-    var score: Int = 0
-    {
-        didSet
-        {
-            scoreLabel.string = "\(score)"
-        }
-    }
+    var audio: OALSimpleAudio = OALSimpleAudio.sharedInstance()
+    var mixpanel = Mixpanel.sharedInstance()
     
     func didLoadFromCCB()
     {
+        gameState = .Paused
+        audio.preloadEffect("Audio/Smash1.wav")
+        audio.preloadEffect("Audio/Smash2.wav")
+        audio.preloadEffect("Audio/Smash3.wav")
+        audio.preloadEffect("Audio/Smash4.wav")
         setupGestures()
         gamePhysicsNode.collisionDelegate = self
     }
@@ -82,7 +93,6 @@ class Gameplay: CCNode
     {
         super.onEnterTransitionDidFinish()
         self.userInteractionEnabled = true
-        gameState = .Playing
         summonAppliance()
     }
     
@@ -90,40 +100,51 @@ class Gameplay: CCNode
     {
         if (gameState == .Playing)
         {
-            //notice
-//            timeLeft -= Float(delta)
-//            if timeLeft == 0
-//            {
-//                gameOver()
-//            }
+            timeLeft -= Float(delta)
+            if timeLeft == 0
+            {
+                gameOver()
+            }
+            if applianceNumberFromBeginning < endOfTutorial && hitsRemaining < 1
+            {
+                tapLabel.visible = false
+                swipeLabel.visible = true
+            }
+            if applianceNumberFromBeginning == endOfTutorial && hitsRemaining < 1
+            {
+                println("tap label false")
+                tapLabel.visible = false
+            }
         }
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!)
-    { }
+    {
+        if(gameState == .Paused)
+        {
+            gameState = .Playing
+        }
+    }
     
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!)
     {
         if(gameState == .Playing)
         {
-            if(turnsInTutorial < 10)
-            {
-                turnsInTutorial++
-            }
-            else
-            {
-                timeLabel.visible = false
-            }
-            
             if(hitsRemaining < 1)
             {
                 gameOver()
             }
-            currentAppliance.animationManager.runAnimationsForSequenceNamed("tap")
-            currentAppliance.makeFire(hitsRemaining)
-            score++
-            hitsRemaining--
-            timeLeft = timeLeft + 0.25
+            else
+            {
+                let random = Int(arc4random_uniform(UInt32(4)))
+                //audio.playEffect("Audio/Smash\(random).wav", loop: false)
+                audio.playEffect("Audio/Smash\(random).wav", volume: 1.0, pitch: 1.0, pan: 0, loop: false)
+                currentAppliance.animationManager.runAnimationsForSequenceNamed("tap")
+                currentAppliance.makeShatter(hitsRemaining)
+                score++
+                hitsRemaining--
+                timeLeft = timeLeft + 0.25
+            }
         }
     }
     
@@ -141,6 +162,7 @@ class Gameplay: CCNode
             popup.position = CGPoint(x: 0.5, y: 0.5)
             GOscoreLabel.string = "Score: \(score)"
             GOhighScoreLabel.string = "High Score: \(highScore)"
+            mixpanel.track("Game Over", properties: ["Score" : score, "Score Level" : score/10])
             parent.addChild(popup)
         }
     }
@@ -170,9 +192,13 @@ class Gameplay: CCNode
             removeAppliance(currentAppliance)
         }
         
-        let numberOfAppliances: Int = 4
+        let numberOfAppliances: Int = 6
         let randomPrecision = UInt32(numberOfAppliances)
-        let random = Int(arc4random_uniform(randomPrecision))
+        var random = Int(arc4random_uniform(randomPrecision))
+        if applianceNumberFromBeginning < endOfTutorial && random == 3
+        {
+            random = random + 1
+        }
         
         var applianceName: String!
         switch(random)
@@ -185,10 +211,15 @@ class Gameplay: CCNode
             applianceName = "Phone"
         case 3:
             applianceName = "OilBarrel"
+        case 4:
+            applianceName = "Dishwasher"
+        case 5:
+            applianceName = "Microwave"
         default:
-            applianceName = "Laptop"
+            applianceName = "Phone"
         }
-        
+        println("summon \(applianceNumberFromBeginning)")
+    
         currentAppliance = CCBReader.load("Appliances/\(applianceName)") as! Appliance
         currentAppliance.animationManager.runAnimationsForSequenceNamed("summonAppliance")
         let middleOfScreen = CCDirector.sharedDirector().designSize.width/2
@@ -204,8 +235,14 @@ class Gameplay: CCNode
     
     func swipe()
     {
-        summonAppliance()
+        if applianceNumberFromBeginning < endOfTutorial
+        {
+            swipeLabel.visible = false
+            tapLabel.visible = true
+        }
         timeLeft += 0.35
+        applianceNumberFromBeginning++
+        summonAppliance()
     }
     
     func setupGestures()
@@ -253,5 +290,5 @@ class Gameplay: CCNode
     }
     
     func swipeUp() { swipeRight() }
-    func swipeDown() { swipeRight() }
+    func swipeDown() { swipeLeft() }
 }

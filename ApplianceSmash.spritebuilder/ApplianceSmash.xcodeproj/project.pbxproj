@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		008CDE0E4F5DE3D7DAD3D901 /* Pods_ApplianceSmash_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42453729652EF4C7681825F /* Pods_ApplianceSmash_iOS.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2808AEF21B4D856F00D3A6F3 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2808AEF11B4D856F00D3A6F3 /* Gameplay.swift */; };
 		2808AEFE1B4D89DC00D3A6F3 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2808AEFD1B4D89DC00D3A6F3 /* Appliance.swift */; };
 		2808AF141B4DC15700D3A6F3 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2808AF131B4DC15700D3A6F3 /* GameOver.swift */; };
 		2845EED91B50844F00E3D3FF /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2845EED81B50844E00E3D3FF /* Tutorial.swift */; };
+		2863C5C51B7915210079D7F5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2863C5C41B7915210079D7F5 /* Media.xcassets */; };
 		5B121030197484FA004C1E1D /* ApplianceSmashActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* ApplianceSmashActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A046D7519E84C36004C4763 /* MainScene.swift */; };
@@ -156,6 +158,7 @@
 		2808AEFD1B4D89DC00D3A6F3 /* Appliance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appliance.swift; path = Source/Appliance.swift; sourceTree = "<group>"; };
 		2808AF131B4DC15700D3A6F3 /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameOver.swift; path = Source/GameOver.swift; sourceTree = "<group>"; };
 		2845EED81B50844E00E3D3FF /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tutorial.swift; path = Source/Tutorial.swift; sourceTree = "<group>"; };
+		2863C5C41B7915210079D7F5 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -218,7 +221,10 @@
 		BC5399D51A44DCC90063F482 /* GLActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLActivityKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/GLActivityKit.framework"; sourceTree = "<group>"; };
 		BC5399D61A44DCC90063F482 /* JavaFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaFoundation.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaFoundation.framework"; sourceTree = "<group>"; };
 		BC5399D71A44DCC90063F482 /* JavaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaKit.framework"; sourceTree = "<group>"; };
+		D27F2FD20C390092899BC674 /* Pods-ApplianceSmash iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApplianceSmash iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ApplianceSmash iOS/Pods-ApplianceSmash iOS.release.xcconfig"; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
+		D42453729652EF4C7681825F /* Pods_ApplianceSmash_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApplianceSmash_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2A2BF7CA1E5180CDBD81379 /* Pods-ApplianceSmash iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApplianceSmash iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApplianceSmash iOS/Pods-ApplianceSmash iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +279,7 @@
 				B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */,
 				B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */,
 				B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */,
+				008CDE0E4F5DE3D7DAD3D901 /* Pods_ApplianceSmash_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +327,15 @@
 				5B121015197483EE004C1E1D /* ic_launcher.png */,
 			);
 			path = "drawable-xxhdpi";
+			sourceTree = "<group>";
+		};
+		69260E9716A7D0F388533EBB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E2A2BF7CA1E5180CDBD81379 /* Pods-ApplianceSmash iOS.debug.xcconfig */,
+				D27F2FD20C390092899BC674 /* Pods-ApplianceSmash iOS.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		7A40362019DDEF0D007B6E8F /* Platforms */ = {
@@ -477,12 +493,14 @@
 		B77F1B2517B978D7009739AE = {
 			isa = PBXGroup;
 			children = (
+				2863C5C41B7915210079D7F5 /* Media.xcassets */,
 				B737893C1807616C0076A88C /* Source */,
 				B77F1B4617B978D7009739AE /* Resources */,
 				9222E2B918734FF800A246C7 /* libs */,
 				B77F1CCF17B978D8009739AE /* Supporting Files */,
 				B77F1B3017B978D7009739AE /* Frameworks */,
 				B77F1B2F17B978D7009739AE /* Products */,
+				69260E9716A7D0F388533EBB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -520,6 +538,7 @@
 				B77F1B3D17B978D7009739AE /* Foundation.framework */,
 				B77F1B3F17B978D7009739AE /* CoreGraphics.framework */,
 				B77F1B4117B978D7009739AE /* CoreText.framework */,
+				D42453729652EF4C7681825F /* Pods_ApplianceSmash_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -592,11 +611,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B77F1CDE17B978D8009739AE /* Build configuration list for PBXNativeTarget "ApplianceSmash iOS" */;
 			buildPhases = (
+				58BA884B73C55A3F82F97E7D /* Check Pods Manifest.lock */,
 				D2E0167A18D782EC00927430 /* Run Script */,
 				B77F1B2A17B978D7009739AE /* Sources */,
 				B77F1B2B17B978D7009739AE /* Frameworks */,
 				D352B47A19EC5D8A00829775 /* Compile Metal Shaders */,
 				B77F1B2C17B978D7009739AE /* Resources */,
+				657FE56805751444CF37870B /* Embed Pods Frameworks */,
+				DEA14EBC17C9925D76BCC20D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -747,6 +769,7 @@
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
+				2863C5C51B7915210079D7F5 /* Media.xcassets in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
@@ -758,6 +781,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		58BA884B73C55A3F82F97E7D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		657FE56805751444CF37870B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ApplianceSmash iOS/Pods-ApplianceSmash iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		927F619B196C771E000F43EF /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -799,6 +852,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /usr/bin/ruby;
 			shellScript = "# Special thanks to Filip Iliescu at Apple for the help with this.\n\n# Environment variables.\nSDK = ENV[\"PLATFORM_NAME\"]\nOBJECT_FILE_DIR = ENV[\"OBJECT_FILE_DIR\"]\nSRCROOT = ENV[\"SRCROOT\"]\nBUILT_PRODUCTS_DIR = ENV[\"BUILT_PRODUCTS_DIR\"]\nPRODUCT_NAME = ENV[\"PRODUCT_NAME\"]\n\n# User variables\n# Directory with your custom .metal files in it.\nSHADER_DIR = \"#{SRCROOT}/Source/MetalShaders\"\n# Location of the cocos2d library directory.\nCOCOS2D_DIR = \"#{SRCROOT}/Source/libs/cocos2d-iphone/cocos2d\"\n\nMETAL_ARGS = [\n\t\"-arch air64\",\n\t\"-emit-llvm\",\n\t\"-c\",\n\t\"-gline-tables-only\",\n\t\"-ffast-math\",\n\t\"-std=ios-metal1.0\",\n    %{-I \"#{COCOS2D_DIR}\"},\n]\n\ndef system(cmd)\n\tputs cmd\n    Kernel.system cmd\nend\n\nPRODUCTS = \"#{OBJECT_FILE_DIR}/CCMetalShaders\"\nARCHIVE = \"#{PRODUCTS}/default.metal-ar\"\n\ndef compile_shader(src)\n\tdst = \"#{PRODUCTS}/#{File.basename(src, \".metal\")}.air\"\n\t\n\t# Compile and archive the shader.\n\tsystem %{xcrun -sdk #{SDK} metal #{METAL_ARGS.join(\" \")} \"#{src}\" -o \"#{dst}\"}\n\tsystem %{xcrun -sdk #{SDK} ar r \"#{ARCHIVE}\" \"#{dst}\"}\nend\n\nif SDK == \"iphoneos\"\n\t# Cannot use default.metallib to avoid clashing with Xcode build magic.\n\t# This is part of a workaround due to the iOS simulator not supporting Metal and may go away in the future.\n\tmetal_lib = \"#{BUILT_PRODUCTS_DIR}/#{PRODUCT_NAME}.app/CCShaders.metallib\"\n    \n\t# Delete the old products dir and metal lib.\n\tsystem %{rm -rf \"#{PRODUCTS}\"}\n    system %{rm -f \"#{metal_lib}\"}\n    system %{mkdir -p \"#{PRODUCTS}\"}\n    \n    # Compile the builtin shaders.\n    compile_shader(%{#{COCOS2D_DIR}/Platforms/iOS/CCShaders.metal})\n    \n\t# Compile/archive all the shaders in the shader directory.\n    Dir.glob(\"#{SHADER_DIR}/*.metal\").each{|src| compile_shader(src)}\n    \n\t# Link all shaders into default lib.\n\tsystem %{xcrun -sdk #{SDK} metallib -o \"#{metal_lib}\" \"#{ARCHIVE}\"}\nend\n";
+		};
+		DEA14EBC17C9925D76BCC20D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ApplianceSmash iOS/Pods-ApplianceSmash iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1110,8 +1178,11 @@
 		};
 		B77F1CDF17B978D8009739AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2A2BF7CA1E5180CDBD81379 /* Pods-ApplianceSmash iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1126,6 +1197,7 @@
 					"Source/libs/cocos2d-iphone/external/Chipmunk/include",
 					"\"Source/libs/cocos2d-iphone/cocos2d-ui\"/**",
 					"\"Source/libs/cocos2d-iphone/external/ObjectAL\"/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = Source/Resources/Platforms/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1134,6 +1206,7 @@
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = ApplianceSmash;
 				PROVISIONING_PROFILE = "";
@@ -1145,8 +1218,11 @@
 		};
 		B77F1CE017B978D8009739AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D27F2FD20C390092899BC674 /* Pods-ApplianceSmash iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1160,6 +1236,7 @@
 					"Source/libs/cocos2d-iphone/external/Chipmunk/include",
 					"\"Source/libs/cocos2d-iphone/cocos2d-ui\"/**",
 					"\"Source/libs/cocos2d-iphone/external/ObjectAL\"/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = Source/Resources/Platforms/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1167,6 +1244,7 @@
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = ApplianceSmash;
 				PROVISIONING_PROFILE = "";
