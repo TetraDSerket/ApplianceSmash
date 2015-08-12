@@ -8,6 +8,7 @@
 
 import UIKit
 import Mixpanel
+import GameKit
 
 class Gameplay: CCNode
 {
@@ -85,6 +86,7 @@ class Gameplay: CCNode
         audio.preloadEffect("Audio/Smash2.wav")
         audio.preloadEffect("Audio/Smash3.wav")
         audio.preloadEffect("Audio/Smash4.wav")
+        audio.preloadEffect("Audio/SwooshNoise.wav")
         setupGestures()
         gamePhysicsNode.collisionDelegate = self
     }
@@ -156,6 +158,7 @@ class Gameplay: CCNode
             if(score > highScore)
             {
                 highScore = score
+                reportHighScoreToGameCenter()
             }
             let popup = CCBReader.load("GameOver", owner: self) as! GameOver
             popup.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .BottomLeft)
@@ -235,6 +238,7 @@ class Gameplay: CCNode
     
     func swipe()
     {
+        audio.playEffect("Audio/SwooshNoise.wav")
         if applianceNumberFromBeginning < endOfTutorial
         {
             swipeLabel.visible = false
@@ -291,4 +295,46 @@ class Gameplay: CCNode
     
     func swipeUp() { swipeRight() }
     func swipeDown() { swipeLeft() }
+    
+    func openGameCenter()
+    {
+        showLeaderboard()
+    }
+    
+    func reportHighScoreToGameCenter()
+    {
+        var scoreReporter = GKScore(leaderboardIdentifier: "ApplianceSmashSinglePlayerLeaderBoard")
+        scoreReporter.value = Int64(highScore)
+        var scoreArray: [GKScore] = [scoreReporter]
+        GKScore.reportScores(scoreArray, withCompletionHandler:
+        {
+            (error : NSError!) -> Void in
+            if error != nil
+            {
+                println("Game Center: Score Submission Error")
+            }
+            else
+            {
+                println("YAY HIGH SCORE REPORTED")
+            }
+        })
+    }
+}
+
+// MARK: Game Center Handling
+extension Gameplay: GKGameCenterControllerDelegate
+{
+    func showLeaderboard()
+    {
+        var viewController = CCDirector.sharedDirector().parentViewController!
+        var gameCenterViewController = GKGameCenterViewController()
+        gameCenterViewController.gameCenterDelegate = self
+        gameCenterViewController.viewState = GKGameCenterViewControllerState.Leaderboards
+        gameCenterViewController.leaderboardIdentifier = "ApplianceSmashSinglePlayerLeaderBoard"
+        viewController.presentViewController(gameCenterViewController, animated: true, completion: nil)
+    }
+    
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
+        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

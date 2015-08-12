@@ -13,6 +13,8 @@
 		2808AF141B4DC15700D3A6F3 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2808AF131B4DC15700D3A6F3 /* GameOver.swift */; };
 		2845EED91B50844F00E3D3FF /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2845EED81B50844E00E3D3FF /* Tutorial.swift */; };
 		2863C5C51B7915210079D7F5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2863C5C41B7915210079D7F5 /* Media.xcassets */; };
+		288411DD1B79777100DE4C9F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288411DC1B79777100DE4C9F /* GameKit.framework */; };
+		288411DF1B7978E200DE4C9F /* GameCenterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288411DE1B7978E200DE4C9F /* GameCenterInteractor.swift */; };
 		5B121030197484FA004C1E1D /* ApplianceSmashActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* ApplianceSmashActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A046D7519E84C36004C4763 /* MainScene.swift */; };
@@ -159,6 +161,8 @@
 		2808AF131B4DC15700D3A6F3 /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameOver.swift; path = Source/GameOver.swift; sourceTree = "<group>"; };
 		2845EED81B50844E00E3D3FF /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tutorial.swift; path = Source/Tutorial.swift; sourceTree = "<group>"; };
 		2863C5C41B7915210079D7F5 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		288411DC1B79777100DE4C9F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		288411DE1B7978E200DE4C9F /* GameCenterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterInteractor.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				288411DD1B79777100DE4C9F /* GameKit.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
@@ -459,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				2808AEF11B4D856F00D3A6F3 /* Gameplay.swift */,
+				288411DE1B7978E200DE4C9F /* GameCenterInteractor.swift */,
 				2808AF131B4DC15700D3A6F3 /* GameOver.swift */,
 				2845EED81B50844E00E3D3FF /* Tutorial.swift */,
 				7A40362019DDEF0D007B6E8F /* Platforms */,
@@ -517,6 +523,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				288411DC1B79777100DE4C9F /* GameKit.framework */,
 				BC5399D31A44DCC90063F482 /* AndroidKit.framework */,
 				BC5399D41A44DCC90063F482 /* CoreJava.framework */,
 				BC5399D51A44DCC90063F482 /* GLActivityKit.framework */,
@@ -895,6 +902,7 @@
 			files = (
 				2808AEFE1B4D89DC00D3A6F3 /* Appliance.swift in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				288411DF1B7978E200DE4C9F /* GameCenterInteractor.swift in Sources */,
 				2808AEF21B4D856F00D3A6F3 /* Gameplay.swift in Sources */,
 				2808AF141B4DC15700D3A6F3 /* GameOver.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
@@ -1181,7 +1189,7 @@
 			baseConfigurationReference = E2A2BF7CA1E5180CDBD81379 /* Pods-ApplianceSmash iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon3;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1221,7 +1229,7 @@
 			baseConfigurationReference = D27F2FD20C390092899BC674 /* Pods-ApplianceSmash iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon3;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
